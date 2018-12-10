@@ -88,7 +88,7 @@ task main()
 					motor(claw)=-60;
 				}
 				motor(claw)=0;
-				Claw=1;
+				Claw=0;
 			}
 		}
 	}
