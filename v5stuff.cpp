@@ -55,17 +55,19 @@ void usercontrol( void )
 {
   // User control code here, inside the loop
     
-//arcade control, averages channels 3 and 4
-        LeftDrive.spin(vex::directionType::fwd, (Controller1.Axis3.value() + Controller1.Axis4.value())/2, vex::velocityUnits::pct); //(Axis3+Axis4)/2
-        RightDrive.spin(vex::directionType::fwd, (Controller1.Axis3.value() - Controller1.Axis4.value())/2, vex::velocityUnits::pct);//(Axis3-Axis4)/2
-//lift control  
-      LeftLift.spin(directionType::fwd, Controller1.Axis2.position(percent), velocityUnits::pct);
-      RightLift.spin(directionType::fwd, Controller1.Axis2.position(percent), velocityUnits::pct);
-//Claw Control
-      Claw.spin(directionType::fwd, Controller1.Axis1.position(percent), velocityUnits::pct);
+
   while (1)
   {
-
+//arcade control, averages channels 3 and 4
+        LeftDrive.spin(vex::directionType::fwd, (Controller1.Axis4.value() - Controller1.Axis3.value())/2, vex::velocityUnits::pct); //(Axis3+Axis4)/2
+        RightDrive.spin(vex::directionType::fwd, (Controller1.Axis4.value() + Controller1.Axis3.value())/2, vex::velocityUnits::pct);//(Axis3-Axis4)/2
+//lift control  
+    LeftLift.spin(vex::directionType::fwd, Controller1.Axis2.value(), vex::velocityUnits::pct);
+    RightLift.spin(vex::directionType::fwd, Controller1.Axis2.value(), vex::velocityUnits::pct);
+//Claw Control
+      Claw.spin(vex::directionType::fwd, Controller1.Axis1.value(), vex::velocityUnits::pct);
+      
+      
 //Intake
 if(Controller1.ButtonR2.pressing())
 {
