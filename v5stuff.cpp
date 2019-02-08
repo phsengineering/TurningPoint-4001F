@@ -37,8 +37,12 @@ void pre_auton( void ) {
 void autonomous( void ) {
   // ..........................................................................
   // Insert autonomous user code here.
-  // ..........................................................................
-
+   // ..........................................................................
+    LeftDrive.rotateTo(-1000,rotationUnits::deg,50,velocityUnits::pct); //Drive backword towards cap
+    RightDrive.rotateTo(-1000,rotationUnits::deg,50,velocityUnits::pct); 
+    Intake.rotateFor(0.5,timeUnits::sec,100,velocityUnits::pct);
+    Intake.stop();
+ 
 }
 
 /*----------------------------------------------------------------------------*/
@@ -53,7 +57,7 @@ void autonomous( void ) {
 
 void usercontrol( void ) 
 {
-  // User control code here, inside the loop
+    Controller1.Axis3.position(percentUnits::pct);  // User control code here, inside the loop
     
 
   while (1)
