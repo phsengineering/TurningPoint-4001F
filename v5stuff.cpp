@@ -38,11 +38,18 @@ void autonomous( void ) {
   // ..........................................................................
   // Insert autonomous user code here.
    // ..........................................................................
-    LeftDrive.rotateTo(-1000,rotationUnits::deg,50,velocityUnits::pct); //Drive backword towards cap
-    RightDrive.rotateTo(-1000,rotationUnits::deg,50,velocityUnits::pct); 
+    LeftDrive.rotateTo(-1000,rotationUnits::deg,100,velocityUnits::pct); //Drive backword towards cap
+    RightDrive.rotateTo(-1000,rotationUnits::deg,100,velocityUnits::pct); 
     Intake.rotateFor(0.5,timeUnits::sec,100,velocityUnits::pct);
-    Intake.stop();
- 
+Intake.stop();
+   LeftDrive.rotateTo(-850,rotationUnits::deg,100,velocityUnits::pct); //Drive backword towards cap
+    RightDrive.rotateTo(-850,rotationUnits::deg,100,velocityUnits::pct); 
+   LeftDrive.rotateTo(-980,rotationUnits::deg,100,velocityUnits::pct); //Drive backword towards cap
+    RightDrive.rotateTo(-720,rotationUnits::deg,100,velocityUnits::pct); 
+    LeftDrive.rotateTo(-1710,rotationUnits::deg,100,velocityUnits::pct); //Drive backword towards cap
+    RightDrive.rotateTo(-1450,rotationUnits::deg,100,velocityUnits::pct); 
+LeftDrive.stop();
+    RightDrive.stop();
 }
 
 /*----------------------------------------------------------------------------*/
@@ -67,7 +74,7 @@ void usercontrol( void )
         RightDrive.spin(vex::directionType::fwd, (Controller1.Axis4.value() + Controller1.Axis3.value())/2, vex::velocityUnits::pct);//(Axis3-Axis4)/2
 //lift control  
     LeftLift.spin(vex::directionType::fwd, Controller1.Axis2.value(), vex::velocityUnits::pct);
-    RightLift.spin(vex::directionType::fwd, Controller1.Axis2.value(), vex::velocityUnits::pct);
+    RightLift.spin(vex::directionType::rev, Controller1.Axis2.value(), vex::velocityUnits::pct);
 //Claw Control
       Claw.spin(vex::directionType::fwd, Controller1.Axis1.value(), vex::velocityUnits::pct);
       
@@ -78,17 +85,28 @@ if(Controller1.ButtonR2.pressing())
   
     Intake.spin(directionType::fwd, 100, velocityUnits::pct);
 }
-      if(Controller1.ButtonL2.pressing())
+  else if(Controller1.ButtonL2.pressing())
 {
     Intake.spin(directionType::rev, 100, velocityUnits::pct);
 }
+      else
+      {
+       Intake.stop();   
+      }
 //Flywheel
+ 
  if(Controller1.ButtonR1.pressing())
 {
   
-    Intake.spin(directionType::fwd, 100, velocityUnits::pct);
+    LeftFlywheel.spin(directionType::rev, 100, velocityUnits::pct);
+      RightFlywheel.spin(directionType::fwd, 100, velocityUnits::pct);
 }     
       
+else
+  {
+      LeftFlywheel.stop();
+      RightFlywheel.stop();
+  }
       //vex::task::sleep(20); //Sleep the task for a short amount of time to prevent wasted resources. 
   }
 }
